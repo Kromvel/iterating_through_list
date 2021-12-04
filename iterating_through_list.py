@@ -1,20 +1,28 @@
-import timeit
-
-code_to_test = """
+import time
 import numpy as np
+
 numbers = list(np.random.randint(low = 1, high = 10, size = 100000))
+numbers_array = np.array(numbers)
+
+start_time = time.time()
+
 for i, number in enumerate(numbers):
     number_is_in_tail = number in numbers[i+1:]
-"""
+print("--- %s секунд у алгоритма 1 (список с простым перебором) ---" % (time.time() - start_time))
 
-code_to_test_2 = """
-import numpy as np
-numbers = list(np.random.randint(low = 1, high = 10, size = 100000))
-number_is_in_tail = [True if number in numbers[i+1:] else False for i, number in enumerate(numbers)]
-"""
-elapsed_time = timeit.timeit(code_to_test, number=3)
-elapsed_time_2 = timeit.timeit(code_to_test_2, number=3)
+start_time = time.time()
+number_is_in_tail = [(True,i,number)  for i,number in enumerate(numbers) if  number in numbers[i+1:]]
+print("--- %s секунд у алгоритма 2 (список с перебором через генератор списков) ---" % (time.time() - start_time))
 
-if __name__ == "__main__":
-  print('elapsed_time:    ' + str(elapsed_time))
-  print('elapsed_time_2:  ' + str(elapsed_time_2))
+
+start_time = time.time()
+for i, number in enumerate(numbers_array):
+    number_is_in_tail = number in numbers_array[i+1:]
+    #print(number_is_in_tail)
+print("--- %s секунд у алгоритма 3 (массив с простым перебором)---" % (time.time() - start_time))   
+
+
+
+start_time = time.time()
+number_is_in_tail = [(True,i,number)  for i,number in enumerate(numbers_array) if  number in numbers_array[i+1:]]
+print("--- %s секунд у алгоритма 3 (массив с перебором через генератор списков)---" % (time.time() - start_time))   
