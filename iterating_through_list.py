@@ -8,7 +8,6 @@ start_time = time.time()
 
 for i, number in enumerate(numbers):
     number_is_in_tail = number in numbers[i+1:]
-    #print(number_is_in_tail)
 print("--- %s секунд у алгоритма 1 (список с простым перебором) ---" % (time.time() - start_time))
 
 start_time = time.time()
