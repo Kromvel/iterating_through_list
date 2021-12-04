@@ -25,4 +25,4 @@ print("--- %s секунд у алгоритма 3 (массив с просты
 
 start_time = time.time()
 number_is_in_tail = [(True,i,number)  for i,number in enumerate(numbers_array) if  number in numbers_array[i+1:]]
-print("--- %s секунд у алгоритма 3 (массив с перебором через генератор списков)---" % (time.time() - start_time))   
+print("--- %s секунд у алгоритма 4 (массив с перебором через генератор списков)---" % (time.time() - start_time))   
